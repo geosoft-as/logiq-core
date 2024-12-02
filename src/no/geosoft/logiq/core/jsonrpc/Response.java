@@ -133,7 +133,7 @@ public final class Response
   private final Error error_;
 
   /** ID of the corresponding request message. Null if it was not detected in the request. */
-  private final Integer id_;
+  private final Long id_;
 
   /** Time the message was created. */
   private final long time_ = System.currentTimeMillis();
@@ -144,7 +144,7 @@ public final class Response
    * @param result  The message result. May be null.
    * @param id      ID of the corresponding request message.
    */
-  public Response(Object result, int id)
+  public Response(Object result, long id)
   {
     result_ = result;
     error_ = null;
@@ -159,7 +159,7 @@ public final class Response
    * @param id         ID of the corresponding request message.
    *                   Null if not detectable in the request.
    */
-  public Response(ErrorType errorType, Object errorData, Integer id)
+  public Response(ErrorType errorType, Object errorData, Long id)
   {
     if (errorType == null)
       throw new IllegalArgumentException("errorType cannot be null");
@@ -210,7 +210,7 @@ public final class Response
     // id
     //
     JsonNumber id = jsonObject.getJsonNumber("id");
-    id_ = id != null ? id.intValue() : null;
+    id_ = id != null ? id.longValue() : null;
   }
 
   /**
@@ -239,7 +239,7 @@ public final class Response
    *
    * @return  ID of this message.
    */
-  public Integer getId()
+  public Long getId()
   {
     return id_;
   }
@@ -397,6 +397,6 @@ public final class Response
   @Override
   public String toString()
   {
-    return toPretty(40);
+    return toPretty(100000); // TODO: Reduce when stable
   }
 }

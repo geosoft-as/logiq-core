@@ -16,6 +16,7 @@ import javax.json.JsonValue;
 import javax.json.stream.JsonParsingException;
 
 import no.geosoft.cc.util.Indentation;
+import no.geosoft.cc.util.Counter;
 
 import no.geosoft.logiq.core.json.JsonUtil;
 
@@ -37,9 +38,6 @@ import no.geosoft.logiq.core.json.JsonUtil;
  */
 public final class Request
 {
-  /** Overall message ID counter. */
-  private final static AtomicInteger idCounter_ = new AtomicInteger(1);
-
   /** Name of method to invoke. */
   private final String method_;
 
@@ -50,7 +48,7 @@ public final class Request
    * ID of this request message, or ID of the corresponding request
    * message of this response message.
    */
-  private final int id_;
+  private final long id_;
 
   /** Time the message was created. */
   private final long time_ = System.currentTimeMillis();
@@ -66,7 +64,7 @@ public final class Request
    * @param id      Message ID.
    * @throws IllegalArgumentException  If method or params is null.
    */
-  public Request(String method, List<Object> params, int id)
+  public Request(String method, List<Object> params, long id)
   {
     if (method == null)
       throw new IllegalArgumentException("method cannot be null");
@@ -102,7 +100,7 @@ public final class Request
 
     for (Object param : params)
       params_.add(param);
-    id_ = idCounter_.getAndIncrement();
+    id_ = Counter.get();
   }
 
   /**
@@ -149,7 +147,7 @@ public final class Request
     if (id == null)
       throw new JsonParsingException("id must be present", null);
 
-    id_ = id.intValue();
+    id_ = id.longValue();
   }
 
   /**
@@ -195,7 +193,7 @@ public final class Request
    *
    * @return  ID of this message.
    */
-  public int getId()
+  public long getId()
   {
     return id_;
   }
@@ -323,5 +321,18 @@ public final class Request
   public String toString()
   {
     return toPretty(60);
+  }
+
+  public static void main(String[] arguments)
+  {
+    String s = "test";
+    List<Object> objects = new ArrayList<>();
+    objects.add("test1");
+    objects.add("test2");
+    int c = 100;
+
+    Request r = new Request(s, objects, c);
+
+    System.out.println(r.toJson());
   }
 }
