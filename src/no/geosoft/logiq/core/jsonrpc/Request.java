@@ -188,7 +188,7 @@ public final class Request
 
 
   /**
-   * Return ID of this request message or the ID of the correspoding
+   * Return ID of this request message or the ID of the corresponding
    * request message of this response message.
    *
    * @return  ID of this message.
