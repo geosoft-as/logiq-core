@@ -9,7 +9,7 @@ import { Request } from "./Request.js";
  *
  * @author <a href="mailto:jacob.dreyer@geosoft.no">Jacob Dreyer</a>
  */
-class LogiqServer
+export class LogiqServer
 {
   /** {string} URI of the LogIQ server. */
   #uri_;
@@ -55,7 +55,7 @@ class LogiqServer
    */
   getUsername()
   {
-    return this.#usernamne_;
+    return this.#username_;
   }
 
   /**
@@ -76,7 +76,7 @@ class LogiqServer
    */
   isOpen()
   {
-    return this.#webScoket != null && this.#webSocket_.readyState === WebSocket.OPEN;
+    return this.#webSocketClient_ != null && this.#webSocketClient_.isOpen();
   }
 
   /**
