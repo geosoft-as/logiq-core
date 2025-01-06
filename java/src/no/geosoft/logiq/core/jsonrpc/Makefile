@@ -5,4 +5,4 @@ Source = \
 
 Main = Request
 
-include $(DEV_HOME)/logiq-core/Makefile
+include $(DEV_HOME)/logiq-core/java/Makefile
