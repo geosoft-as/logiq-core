@@ -1,10 +1,6 @@
 "use strict"
 
-/** Install by "npm install ws" */
-// const WebSocket = require('ws');
-
-import { LogiqServer } from "./WebSocket.js";
-import { EventManager } from ":/EventManager.js";
+import { EventManager } from "./EventManager.js";
 import { Request } from "./Request.js";
 import { Response } from "./Response.js";
 
@@ -15,26 +11,29 @@ import { Response } from "./Response.js";
  */
 export class WebSocketClient
 {
-  #logiqServer_;
+  /** {string} Web socket URI. */
+  #uri_;
 
-  #requestQueue_ = [];
-
+  /** The low-level web socket instance. */
   #webSocket_;
+
+  /** {Request[]} Requests made before the web socket was opened. */
+  #requestQueue_ = [];
 
   /**
    * Create a web socket client instance.
    *
-   * @param {string} logiqServer - The LogIQ server. Non-null.
+   * @param {string} uri - The web socket URI. Non-null.
    */
-  constructor(logiqServer)
+  constructor(uri)
   {
-    if (logiqServer == null)
-      throw new TypeError("Invalid logiqServer: " + logiqServer);
+    if (uri == null)
+      throw new TypeError("uri cannot be null");
 
-    this.#logiqServer_ = logiqServer;
+    this.#uri_ = uri;
     this.#requestQueue_ = [];
 
-    this.#webSocket_ = new WebSocket(logiqServer.getUri());
+    this.#webSocket_ = new WebSocket(uri);
     this.#webSocket_.onopen = this.onOpen.bind(this);
     this.#webSocket_.onclose = this.onClose.bind(this);
     this.#webSocket_.onmessage = this.onMessage.bind(this);
@@ -48,7 +47,7 @@ export class WebSocketClient
   {
     console.log("WebSocket connection opened");
 
-    EventManager.getInstance().notify("LogiqServerOpened", this.logiqServer_)
+    EventManager.getInstance().notify("WebSocketConnectionOpened", this.#uri_)
 
     // Send any queued messages
     this.#requestQueue_.forEach(request => this.#webSocket_.send(request.toJson()));
@@ -61,7 +60,7 @@ export class WebSocketClient
   onClose()
   {
     console.log("WebSocket connection closed");
-    EventManager.getInstance().notify("LogiqServerClosed", this.logiqServer_);
+    EventManager.getInstance().notify("WebSocketConnectionClosed", this.#uri_);
   }
 
   /**
@@ -71,7 +70,7 @@ export class WebSocketClient
   {
     console.log("Received message: ", event.data);
     const response = new Response(event.data);
-    EventManager.getInstance().notify("LogiqResponseReceived", this.logiqServer_, response);
+    EventManager.getInstance().notify("WebSocketResponseReceived", this.#uri_, response);
   }
 
   /**
@@ -107,7 +106,7 @@ export class WebSocketClient
     // Send right away if the web socket is open
     if (this.isOpen()) {
       this.#webSocket_.send(request.toJson());
-      EventManager.getInstance().notify("LogiqRequestSent", this, request);
+      EventManager.getInstance().notify("WebSocketRequestSent", this, request);
     }
 
     // Otherwise queue the message and send it as soon as the socket opens
@@ -116,4 +115,3 @@ export class WebSocketClient
     }
   }
 }
-
