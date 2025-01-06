@@ -11,6 +11,7 @@ import { Request } from "./Request.js";
  */
 class LogiqServer
 {
+  /** {string} URI of the LogIQ server. */
   #uri_;
 
   #username_;
@@ -67,6 +68,12 @@ class LogiqServer
     return this.#password_;
   }
 
+  /**
+   * Check if the connection to the LogIQ server is currently open.
+   *
+   * @return {boolean}  True if the web socket connection to the LogIQ server is currently open,
+   *                    false otherwise.
+   */
   isOpen()
   {
     return this.#webScoket != null && this.#webSocket_.readyState === WebSocket.OPEN;
@@ -76,7 +83,7 @@ class LogiqServer
    * Send the given request to the LogIQ server.
    *
    * @param {object} request - Request to send. Non-null.
-   * @throws IOException  If the sending fails for some reason.
+   * @throws TypeError  If the sending fails for some reason.
    */
   send(request)
   {
@@ -93,6 +100,11 @@ class LogiqServer
     this.#webSocketClient_.send(request);
   }
 
+  /**
+   * Return a string representation of this instance.
+   *
+   * @return {string}  A string representation of this instance. Never null.
+   */
   toString()
   {
     return this.#uri_;
