@@ -7,8 +7,10 @@
  */
 export class EventManager
 {
+  /** The sole instance of this class. */
   static #instance_ = new EventManager();
 
+  /** Map event names with listener array. */
   #listeners_ = new Map();
 
   /**
@@ -24,9 +26,6 @@ export class EventManager
    */
   static getInstance()
   {
-    if (!EventManager.instance_)
-      EventManager.#instance_ = new EventManager();
-
     return EventManager.#instance_;
   }
 
@@ -44,13 +43,18 @@ export class EventManager
     if (!eventListener)
       throw new TypeError("eventListener cannot be null");
 
+
+    console.log("ADDING LISTENER: " + eventName + " " + eventListener);
+
     // Get the listener set for the event, create if not present
     if (!this.#listeners_.has(eventName))
       this.#listeners_.set(eventName, []);
 
     const listeners = this.#listeners_.get(eventName);
 
-    // Ensure the listener is not already added
+    console.log("CREATED LISTENER LIST: " + eventName + " " + listeners);
+
+    // Add the new listener if it is not already there
     if (!listeners.some((listener) => listener === eventListener))
       listeners.push(eventListener);
   }
@@ -82,7 +86,14 @@ export class EventManager
     if (!eventName)
       throw new TypeError("eventName cannot be null");
 
+
+    console.log("NOTIFY: " + eventName);
+
+
     const listeners = this.#listeners_.get(eventName);
+    console.log("LISTENERES: " + listeners);
+
+
     if (!listeners)
       return;
 
@@ -98,21 +109,3 @@ export class EventManager
     listeners.forEach(listener => listeners.delete(listener));
   }
 }
-
-
-class F
-{
-  update(eventName, source, data)
-  {
-    console.log(eventName + " " + source);
-  }
-}
-
-
-let f = new F();
-let e = EventManager.getInstance();
-e.addListener("Test", f);
-e.addListener("Test2", f);
-e.removeListener(f);
-e.notify("Test2", "hei");
-
