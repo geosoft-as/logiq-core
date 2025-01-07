@@ -1,0 +1,9 @@
+{
+  "name": "logiq-core",
+  "version": "1.0.0",
+  "description": "JavaScript front-end to the GeoSoft LogIQ timeseries server",
+  "keywords": ["timeseries", "LogIQ", "IoT", "real-time", "GeoSoft", "TimeSeries.JSON"],
+  "author": "GeoSoft AS",
+  "type": "module",
+  "private": true
+}

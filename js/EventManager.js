@@ -8,7 +8,7 @@
 export class EventManager
 {
   /** The sole instance of this class. */
-  static #instance_ = new EventManager();
+  static #instance_ = null;
 
   /** Map event names with listener array. */
   #listeners_ = new Map();
@@ -18,7 +18,8 @@ export class EventManager
    */
   constructor()
   {
-    // Nothing
+    if (EventManager.#instance_ != null)
+      throw new Error("Use EventManager.getInstance() to access singleton instance");
   }
 
   /**
@@ -26,6 +27,9 @@ export class EventManager
    */
   static getInstance()
   {
+    if (!EventManager.#instance_)
+      EventManager.#instance_ = new EventManager();
+
     return EventManager.#instance_;
   }
 
@@ -43,16 +47,11 @@ export class EventManager
     if (!eventListener)
       throw new TypeError("eventListener cannot be null");
 
-
-    console.log("ADDING LISTENER: " + eventName + " " + eventListener);
-
     // Get the listener set for the event, create if not present
     if (!this.#listeners_.has(eventName))
       this.#listeners_.set(eventName, []);
 
     const listeners = this.#listeners_.get(eventName);
-
-    console.log("CREATED LISTENER LIST: " + eventName + " " + listeners);
 
     // Add the new listener if it is not already there
     if (!listeners.some((listener) => listener === eventListener))
@@ -86,14 +85,7 @@ export class EventManager
     if (!eventName)
       throw new TypeError("eventName cannot be null");
 
-
-    console.log("NOTIFY: " + eventName);
-
-
     const listeners = this.#listeners_.get(eventName);
-    console.log("LISTENERES: " + listeners);
-
-
     if (!listeners)
       return;
 
