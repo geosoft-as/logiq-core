@@ -1,9 +1,16 @@
 {
   "name": "logiq-core",
   "version": "1.0.0",
-  "description": "JavaScript front-end to the GeoSoft LogIQ timeseries server",
+  "license": "MIT",
+  "description": "JavaScript front-end to the GeoSoft LogIQ time series server",
   "keywords": ["timeseries", "LogIQ", "IoT", "real-time", "GeoSoft", "TimeSeries.JSON"],
-  "author": "GeoSoft AS",
+  "author": "Jacob Dreyer <jacob.dreyer@geosoft.no> (https://geosoft.no)",
+  "homepage": "https://github.com/geosoft-as/logiq-core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geosoft-as/logiq-core"
+  },
+  "main": "./index.js",
   "type": "module",
   "private": true
 }

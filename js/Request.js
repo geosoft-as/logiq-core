@@ -20,10 +20,13 @@ import { Counter } from "./Counter.js";
  */
 export class Request
 {
+  /** Name of method to be invoked. Non-null. */
   #method_;
 
+  /** List of parameters to be used during the invocation of the method. Non-null. */
   #params_;
 
+  /** Message ID. Non-null. */
   #id_;
 
   /**
@@ -32,9 +35,9 @@ export class Request
    * Use this constructor if the message ID must be controlled
    * from outside.
    *
-   * @param {string} method - Name of the method to invoke. Non-null.
-   * @param {array}  params - Method parameters to apply. Non-null.
-   * @param {string} id     - Message ID.
+   * @param {string} method  Name of the method to invoke. Non-null.
+   * @param {array}  params  Method parameters to apply. Non-null.
+   * @param {string} id      Message ID. Undefined to auto-generate.
    * @throws {TypeError}  If method or params is null.
    */
   constructor(method, params, id)
@@ -123,16 +126,13 @@ export class Request
   }
 
   /**
-   * Overrides the default Object.prototype.toString method.
+   * Return a string representation of this instance.
    *
-   * @returns {string} A string representing the Person object.
+   * @returns {string} A string representing this instance. Never null.
    */
   toString()
   {
-    return "REQUEST " + this.#id_;
+    return toJson();
   }
 }
 
-
-let r = new Request("send", ["login", "jd"], 101);
-console.log(r.toJson());

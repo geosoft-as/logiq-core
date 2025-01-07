@@ -25,14 +25,24 @@ import { Error } from "./Error.js";
  */
 export class Response
 {
+  /** Method call result. May be null if n/A or an error occured. */
   #result_;
 
+  /** The error object in case an error occured. Null if not. */
   #error_;
 
+  /** The corresponding response ID. Never null. */
   #id_;
 
+  /** Time of the response. */
   #time_ = new Date();
 
+  /**
+   * Create a Response instance from the JSON string response.
+   *
+   * @param {string} jsonString  The string holding the response. Non-null.
+   * @throws TypeError  If jsonString is null or not a string.
+   */
   constructor(jsonString)
   {
     if (typeof jsonString != "string" || jsonString == null)
@@ -51,28 +61,53 @@ export class Response
     this.#id_ = jsonObject.id;
   }
 
+  /**
+   * Return the result of the method call.
+   *
+   * @return {object}  The result of the method call. Null if N/A or an error occured.
+   */
   getResult()
   {
     return this.#result_;
   }
 
+  /**
+   * Return any error of the method call.
+   *
+   * @return {Error}  Any error occuring during the method call. Null if none.
+   */
   getError()
   {
     return this.#error_;
   }
 
+  /**
+   * Return the corresponding request ID.
+   *
+   * @return {string}  The corresponding request ID. Never null.
+   */
   getId()
   {
     return this.#id_;
   }
 
+  /**
+   * Return the time this response instance was created.
+   *
+   * @return  The time this response instance was created. Never null.
+   */
+  getTime()
+  {
+    return this.#time_;
+  }
+
+  /**
+   * Return a string representation of this response.
+   *
+   * @return  A string representation of this response. Never null.
+   */
   toString()
   {
     return "Response " + this.#id_;
   }
 }
-
-
-let text = "{\"jsonrpc\":\"2.0\", \"result\":{\"data\":12.2}, \"id\":101}";
-let r = new Response(text);
-console.log(r.toString());

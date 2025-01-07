@@ -14,7 +14,7 @@ export class WebSocketClient
   /** {string} Web socket URI. */
   #uri_;
 
-  /** The low-level web socket instance. */
+  /** {WebSocket} The back-end built-in web socket instance. */
   #webSocket_;
 
   /** {Request[]} Requests made before the web socket was opened. */
@@ -23,7 +23,8 @@ export class WebSocketClient
   /**
    * Create a web socket client instance.
    *
-   * @param {string} uri - The web socket URI. Non-null.
+   * @param {string} uri  The web socket URI. Non-null.
+   * @throws TypeError  If uri is null.
    */
   constructor(uri)
   {
@@ -95,6 +96,7 @@ export class WebSocketClient
    * Send a message through the web socket.
    *
    * @param {Request}  Request to send. Non-null.
+   * @throws TypeError  If request is null or not of expected type.
    */
   send(request)
   {
@@ -109,7 +111,7 @@ export class WebSocketClient
       EventManager.getInstance().notify("WebSocketRequestSent", this, request);
     }
 
-    // Otherwise queue the message and send it as soon as the socket opens
+    // Otherwise queue the message so it can be sent as soon as the socket opens
     else {
       this.#requestQueue_.push(request);
     }

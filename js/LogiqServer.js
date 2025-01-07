@@ -6,6 +6,10 @@ import { Request } from "./Request.js";
 /**
  * <b>NOTE:</b> This is not a web socket server. It is a web socket client that
  * <em>represents</em> the remote web socket server in this application.
+ * <p>
+ * The is really an ultra-thin wrapper of the WebSocketClient. Currently that object
+ * could be used directly, but we might think that the present class can get some
+ * higer level logic that might be useful.
  *
  * @author <a href="mailto:jacob.dreyer@geosoft.no">Jacob Dreyer</a>
  */
@@ -14,58 +18,33 @@ export class LogiqServer
   /** {string} URI of the LogIQ server. */
   #uri_;
 
-  #username_;
-
-  #password_;
-
+  /** The back-end web socket client. */
   #webSocketClient_;
 
-  constructor(uri, username, password)
+  /**
+   * Create a new LogiqServer instance, i.e. an instance that <em>represents</em>
+   * the LogIQ server in the client prohgram.
+   *
+   * @param {string} uri  Web socket URI. Non-null.
+   * @throws TypeError  If uri is null or of wrong type.
+   */
+  constructor(uri)
   {
     if (typeof uri != "string" || uri == null)
       throw new TypeError("Invalid uri: " + uri);
 
-    if (typeof username != "string" || username == null)
-      throw new TypeError("Invalid username: " + username);
-
-    if (typeof password != "string" || password == null)
-      throw new TypeError("Invalid password: " + password);
-
     this.#uri_ = uri;
-    this.#username_ = username;
-    this.#password_ = password;
-
     this.#webSocketClient_ = null;
   }
 
   /**
    * Return URI of the LogIQ server.
    *
-   * @return {string} URI of the LogIQ server. Never null.
+   * @return {string}  URI of the LogIQ server. Never null.
    */
   getUri()
   {
     return this.#uri_;
-  }
-
-  /**
-   * Return username for the session.
-   *
-   * @return {string} Username for the session. Never null.
-   */
-  getUsername()
-  {
-    return this.#username_;
-  }
-
-  /**
-   * Return password for the session.
-   *
-   * @return {string} Password for the session. Never null.
-   */
-  getPassword()
-  {
-    return this.#password_;
   }
 
   /**
@@ -82,8 +61,8 @@ export class LogiqServer
   /**
    * Send the given request to the LogIQ server.
    *
-   * @param {object} request - Request to send. Non-null.
-   * @throws TypeError  If the sending fails for some reason.
+   * @param {Request} request  Request to send. Non-null.
+   * @throws TypeError  If request is null or of wrong type.
    */
   send(request)
   {
@@ -110,4 +89,3 @@ export class LogiqServer
     return this.#uri_;
   }
 }
-
