@@ -67,7 +67,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient
   @Override
   public void onError(Exception exception)
   {
-    logger_.log(Level.WARNING, "Web socket error", exception);
+    logger_.log(Level.WARNING, "Web socket error: " + getURI(), exception);
   }
 
   /**

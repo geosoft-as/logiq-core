@@ -190,8 +190,8 @@ public final class Response
     // result
     //
     JsonValue result = jsonObject.get("result");
-    Class<?> resultType = JsonUtil.getClass(result);
-    result_ = JsonUtil.getAsType(result, resultType);
+    Class<?> resultType = result != null ? JsonUtil.getClass(result) : null;
+    result_ = result != null ? JsonUtil.getAsType(result, resultType) : null;
 
     //
     // error
