@@ -41,6 +41,17 @@ export class WebSocketClient
     this.#webSocket_.onerror = this.onError.bind(this);
   }
 
+
+  /**
+   * Return the URI of the back-end web socket.
+   *
+   * @return  The URI  o the web socket. Never null.
+   */
+  getUri()
+  {
+    return this.#uri_;
+  }
+
   /**
    * Called when the connection is opened.
    */
