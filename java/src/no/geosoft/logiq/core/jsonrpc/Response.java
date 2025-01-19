@@ -201,7 +201,7 @@ public final class Response
     if (errorObject != null) {
       JsonNumber errorCode = errorObject.getJsonNumber("code");
       String errorMessage = errorObject.getString("message");
-      Object errorData = errorObject.getJsonObject("data");
+      Object errorData = errorObject.get("data");
       error = new Error(errorCode.intValue(), errorMessage, errorData);
     }
     error_ = error;
