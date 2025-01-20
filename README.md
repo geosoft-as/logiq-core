@@ -8,7 +8,7 @@ The communication with the server is done over a secure web socket connection se
 format where the data themselves are included as
 [TimeSeries.JSON](https://github.com/geosoft-as/timeseries).
 
-LogIQ is communicating on the following URL:
+LogIQ is available at the following URL:
 
 > wss://logiq.geosoft.no:8025
 
@@ -33,7 +33,7 @@ The generic form of a JSON-RPC request and response is as follows:
 
 ### Request
 
-```json
+```txt
 {
   "jsonrpc": "2.0",
   "method": "<method>",
