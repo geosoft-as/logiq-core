@@ -64,8 +64,7 @@ The generic form of a JSON-RPC request and response is as follows:
 |----------------|--------------------|
 |                | adminUsername      |
 |                | adminPassword      |
-|Example request |
-```json
+|Example request | ```json
 {
   "jsonrpc": "2.0",
   "method": "getCustomers",
