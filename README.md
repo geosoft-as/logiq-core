@@ -11,7 +11,7 @@ format where the data themselves are included as
 LogIQ is available on the following URL:
 
 > [!NOTE]
-> wss://logiq.geosoft.no:8025
+> `wss://logiq.geosoft.no:8025`
 
 
 
