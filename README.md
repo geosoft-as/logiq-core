@@ -28,7 +28,7 @@ for given programming environments.
 # The LogIQ protocol
 
 All communication between the LogIQ server and its clients (producers and consumers) is done be simple JSON-RPC calls.
-A client send _request_ and receives a corresponding _response_ from the server.
+A client send _request_ and (depending on the request) receives a corresponding _response_ from the server.
 
 The generic form of a JSON-RPC request and response is as follows:
 
@@ -68,9 +68,7 @@ Below is the full set of LogIQ methods:
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
 |                     | data                 |               |
-
-| method              | parameters           | used by       |
-|---------------------|----------------------|---------------|
+|                     |                      |               |
 | **resetStream**     | streamId             | producer      |
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
@@ -84,10 +82,7 @@ Below is the full set of LogIQ methods:
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
 |                     | messageId            |               |
-
-
-| method              | parameters           | used by       |
-|---------------------|----------------------|---------------|
+|                     |                      |               |
 | **stopConsuming**   | streamName           | consumer      |
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
@@ -203,3 +198,21 @@ Below is the full set of LogIQ methods:
 |                     | adminPassword        |               |
 
 
+## Error codes
+
+If an error occurs, this is returned as part of the response. The list below shows the
+possible error codes and the associated description:
+
+| Code   | Description                 |
+|--------|-----------------------------|
+| -32700 | Parse error                 |
+| -32600 | Invalid request             |
+| -32601 | Method not found            |
+| -32602 | Invalid parameters          |
+| -32603 | Internal error              |
+| -32001 | LogIQ - Database error      |
+| -32002 | LogIQ - Invalid login       |
+| -32003 | LogIQ - Invalid format      |
+| -32004 | LogIQ - Incompatible format |
+| -32005 | LogIQ - Unknown instance    |
+| -32006 | LogIQ - Illegal access      |
