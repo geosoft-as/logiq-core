@@ -31,7 +31,7 @@ A client send _request_ and receives a corresponding _response_ from the server.
 
 The generic form of a JSON-RPC request and response is as follows:
 
-### Request
+### Request:
 
 ```txt
 {
@@ -42,31 +42,29 @@ The generic form of a JSON-RPC request and response is as follows:
 }
 ```
 
-### Response
+### Response:
 
-```json
+```txt
 {
   "jsonrpc": "2.0",
-  "result": &lt;result object&gt;,
+  "result": <result object>,
   "error": {
-    "code": &lt;error code&gt;,
-    "message": &lt;error message&gt;,
-    "data": &lt;additional error information&gt;
+    "code": <error code>,
+    "message": <error message>,
+    "data": <additional error information>
   },
-  "id": &lt;id&gt;
+  "id": <id>
 }
 ```
 
-The
 
-
-
+### getCustomers
 
 | getCustomers  | parameters         |
 |---------------|--------------------|
 |               | adminUsername      |
 |               | adminPassword      |
-|------------------------------------|
+|---------------|--------------------|
 
 
 Example request:
@@ -82,7 +80,7 @@ Example request:
 
 Example response:
 
-``json
+```json
 {
   "jsonrpc": "2.0",
   "id": 77,
