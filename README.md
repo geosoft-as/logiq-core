@@ -58,84 +58,143 @@ The generic form of a JSON-RPC request and response is as follows:
 }
 ```
 
-These are the most frequently methods, the full
+Below is the full set of LogIQ methods:
 
-| method        | parameters       |
-|---------------|------------------|
-| **createStream**  | customerUsername |
-|               | customerPassword |
-|               |                  |
-| deleteStream  | streamName       |
-|               | customerUsername |
-|               | customerPassword |
-|               |                  |
-| getCustomers  | adminUsername    |
-|               | adminPassword    |
-|               |                  |
-| createCustomer | name            |
-|                | contact         |
-|                | email           |
-|                | username        |
-|                | password        |
-|                | adminUsername   |
-|                | adminPassword   |
-|                |                 |
+## Producer methods
+
+| method              | parameters           | used by       |
+|---------------------|----------------------|---------------|
+| **send**            | streamId             | producer      |
+|                     | clientUsername       |               |
+|                     | clientPassword       |               |
+|                     | data                 |               |
+|                     |                      |               |
+| **resetStream**     | streamId             | producer      |
+|                     | clientUsername       |               |
+|                     | clientPassword       |               |
 
 
+## Consumer methods
+
+| method              | parameters           | used by       |
+|---------------------|----------------------|---------------|
+| **startConsuming**  | streamName           | consumer      |
+|                     | clientUsername       |               |
+|                     | clientPassword       |               |
+|                     | messageId            |               |
+|                     |                      |               |
+| **stopConsuming**   | streamName           | consumer      |
+|                     | clientUsername       |               |
+|                     | clientPassword       |               |
+|                     | messageId            |               |
 
 
+## Customer administration methods
 
+| method              | parameters           | used by       |
+|---------------------|----------------------|---------------|
+| **createStream**    | customerUsername     | customer      |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **deleteStream**    | streamName           | customer      |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **getStreams**      | customerUsername     | customer      |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **createStream**    | streamName           | customer      |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **createStream**    | customerUsername     | customer      |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **updateStream**    | streamId             | customer      |
+|                     | newName              |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **deleteStream**    | streamId             | customer      |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **getTransfers**    | streamId             | customer      |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **getClients**      | customerUsername     | customer      |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **createClient**    | clientName           | customer      |
+|                     | contact              |               |
+|                     | email                |               |
+|                     | username             |               |
+|                     | password             |               |
+|                     | clientUsername       |               |
+|                     | clientPassword       |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **updateClient**    | clientId             | customer      |
+|                     | newClientName        |               |
+|                     | newContact           |               |
+|                     | newEmail             |               |
+|                     | newClientUsername    |               |
+|                     | newClientPassword    |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **deleteClient**    | clientId             | customer      |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **setAsProducer**   | clientId             | customer      |
+|                     | streamId             |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **setAsConsumer**   | clientId             | customer      |
+|                     | streamId             |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **isProducer**      | clientId             | customer      |
+|                     | streamId             |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
+|                     |                      |               |
+| **isConsumer**      | clientId             | customer      |
+|                     | streamId             |               |
+|                     | customerUsername     |               |
+|                     | customerPassword     |               |
 
+## LogIQ administrator methods
 
+| method              | parameters           | used by       |
+|---------------------|----------------------|---------------|
+| **getCustomers**    | adminUsername        | administrator |
+|                     | adminPassword        |               |
+|                     |                      |               |
+| **createCustomer**  | name                 | administrator |
+|                     | contact              |               |
+|                     | email                |               |
+|                     | username             |               |
+|                     | password             |               |
+|                     | adminUsername        |               |
+|                     | adminPassword        |               |
+|                     |                      |               |
+| **updateCustomer**  | customerId           | administrator |
+|                     | newName              |               |
+|                     | newContact           |               |
+|                     | newEmail             |               |
+|                     | newUsername          |               |
+|                     | newPassword          |               |
+|                     | adminUsername        |               |
+|                     | adminPassword        |               |
+|                     |                      |               |
+| **deleteCustromer** | customerId           | administrator |
+|                     | adminUsername        |               |
+|                     | adminPassword        |               |
 
-
-
-
-
-
-
-## getCustomers
-
-| getCustomers   | parameters         |
-|----------------|--------------------|
-|                | adminUsername      |
-|                | adminPassword      |
-
-
-Example request:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "getCustomers",
-  "params": ["admin", "admin_pw"],
-  "id": 77
-}
-```
-
-Example response:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 77,
-  "result": [
-    {
-      "id": "1001",
-      "name": "Company A"
-    },
-    {
-      "id": "1002",
-      "name": "Company B"
-    }
-  ]
-}
-
-
-## createCustomer
-
-| createCustomer | parameters         |
-|----------------|--------------------|
-|                | adminUsername      |
-|                | adminPassword      |
 
