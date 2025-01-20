@@ -60,15 +60,11 @@ The generic form of a JSON-RPC request and response is as follows:
 
 ### getCustomers
 
-| getCustomers  | parameters         |
-|---------------|--------------------|
-|               | adminUsername      |
-|               | adminPassword      |
-|---------------|--------------------|
-
-
-Example request:
-
+| getCustomers   | parameters         |
+|----------------|--------------------|
+|                | adminUsername      |
+|                | adminPassword      |
+|Example request |
 ```json
 {
   "jsonrpc": "2.0",
@@ -77,6 +73,8 @@ Example request:
   "id": 77
 }
 ```
+|
+
 
 Example response:
 
