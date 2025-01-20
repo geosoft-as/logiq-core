@@ -68,7 +68,9 @@ Below is the full set of LogIQ methods:
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
 |                     | data                 |               |
-|                     |                      |               |
+
+| method              | parameters           | used by       |
+|---------------------|----------------------|---------------|
 | **resetStream**     | streamId             | producer      |
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
@@ -82,7 +84,10 @@ Below is the full set of LogIQ methods:
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
 |                     | messageId            |               |
-|                     |                      |               |
+
+
+| method              | parameters           | used by       |
+|---------------------|----------------------|---------------|
 | **stopConsuming**   | streamName           | consumer      |
 |                     | clientUsername       |               |
 |                     | clientPassword       |               |
