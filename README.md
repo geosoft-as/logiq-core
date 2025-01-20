@@ -62,7 +62,7 @@ These are the most frequently methods, the full
 
 | method        | parameters       |
 |---------------|------------------|
-| createStream  | customerUsername |
+| **createStream**  | customerUsername |
 |               | customerPassword |
 |               |                  |
 | deleteStream  | streamName       |
