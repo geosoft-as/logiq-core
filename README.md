@@ -1,12 +1,12 @@
 # What is GeoSoft LogIQ?
 
-GeoSoft LogIQ is a cloud-based time series data server.
-It accepts time series data from _producers_ and deliver the data to subscribing _consumers_ in real-time or later.
+GeoSoft LogIQ&trade; is a cloud-based time series data server.
+It accepts time series data from _producers_ and deliver the data to subscribing _consumers_ in real-time or in batch.
 
 The communication with the server is done over a secure web socket connection sending simple strings in the
 [JSON-RPC 2.0](https://www.jsonrpc.org/specification)
-format where the data themselves are included as
-[TimeSeries.JSON](https://github.com/geosoft-as/timeseries).
+format where the data themselves are passed in the GeoSoft
+[TimeSeries.JSON](https://github.com/geosoft-as/timeseries) format.
 
 LogIQ is available on the following URL:
 
@@ -21,17 +21,18 @@ The main reason for maintaining the `logic-core` repository is the present docum
 
 Communicating with the LogIQ server is very simple, the full set of requests and responses are documented in detail below.
 
-But to simplify the implementation of producers and consumers further, this repository contains code that can be used in
-specific programming environments.
+But to simplify the implementation of producers and consumers further, the repository also contains code that can be used
+in specific programming environments.
 
-Note that the `logiq-core` library is being used both by the LogIQ server and the GeoSoft desktop consumer environment,
-ScenIQ&trade; as well as in PoC client applications like [TrackMe](https://geosoft.no/TrackMe).
+Note that the `logiq-core` library is being used both by the LogIQ&trade; and the corresponding GeoSoft desktop consumer
+environment, ScenIQ&trade; as well as in PoC client applications like [TrackMe](https://geosoft.no/TrackMe).
 
 
 
 # The LogIQ protocol
 
-All communication between the LogIQ server and its clients (producers and consumers) is done be simple JSON-RPC calls.
+All communication between the LogIQ server and its clients (producers and consumers) is done by simple
+[JSON-RPC 2.0](https://www.jsonrpc.org/specification) calls.
 A client send _request_ and (depending on the request) receives a corresponding _response_ from the server.
 
 The generic form of a JSON-RPC request and response is as follows:
@@ -61,6 +62,9 @@ The generic form of a JSON-RPC request and response is as follows:
   "id": <id>
 }
 ```
+
+The communication is fully asynchrnouos, so the caller will use the _id_ entries to match response(s) with their
+corresponding reques.
 
 Below is the full set of LogIQ methods:
 
