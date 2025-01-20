@@ -44,10 +44,7 @@ public final class Request
   /** Parameter values to be used during the invocation of the method. */
   private final List<Object> params_ = new ArrayList<>();
 
-  /**
-   * ID of this request message, or ID of the corresponding request
-   * message of this response message.
-   */
+  /** ID of this request message. */
   private final long id_;
 
   /** Time the message was created. */
