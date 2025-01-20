@@ -8,7 +8,7 @@ The communication with the server is done over a secure web socket connection se
 format where the data themselves are included as
 [TimeSeries.JSON](https://github.com/geosoft-as/timeseries).
 
-LogIQ is available at the following URL:
+LogIQ is available on the following URL:
 
 > [!NOTE]
 > wss://logiq.geosoft.no:8025
@@ -20,7 +20,7 @@ LogIQ is available at the following URL:
 Communicating with the LogIQ server is very simple, the full set of requests and responses
 are documented in detail below.
 
-logiq-core consists of _optional_ code that can simplify the implementation of producers and consumers further
+`logiq-core` consists of _optional_ code that can simplify the implementation of producers and consumers further
 for given programming environments.
 
 
@@ -57,6 +57,41 @@ The generic form of a JSON-RPC request and response is as follows:
   "id": <id>
 }
 ```
+
+These are the most frequently methods, the full
+
+| method        | parameters       |
+|---------------|------------------|
+| createStream  | customerUsername |
+|               | customerPassword |
+|               |                  |
+| deleteStream  | streamName       |
+|               | customerUsername |
+|               | customerPassword |
+|               |                  |
+| getCustomers  | adminUsername    |
+|               | adminPassword    |
+|               |                  |
+| createCustomer | name            |
+|                | contact         |
+|                | email           |
+|                | username        |
+|                | password        |
+|                | adminUsername   |
+|                | adminPassword   |
+|                |                 |
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## getCustomers
@@ -95,3 +130,12 @@ Example response:
     }
   ]
 }
+
+
+## createCustomer
+
+| createCustomer | parameters         |
+|----------------|--------------------|
+|                | adminUsername      |
+|                | adminPassword      |
+
