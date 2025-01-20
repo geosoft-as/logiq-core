@@ -1,10 +1,12 @@
-# What is LogIQ&trade;?
+# What is GeoSoft LogIQ?
 
-LogIQ&trade; is a cloud-based time series data server.
+GeoSoft LogIQ is a cloud-based time series data server.
 It accepts time series data from _producers_ and deliver the data to subscribing _consumers_ in real-time or later.
 
-The communication with the server is done over a secure web socket connection sending simple strings in the JSON-RPC
-format where the data themselves are included as TimeSeries.JSON.
+The communication with the server is done over a secure web socket connection sending simple strings in the
+[JSON-RPC 2.0](https://www.jsonrpc.org/specification)
+format where the data themselves are included as
+[TimeSeries.JSON](https://github.com/geosoft-as/timeseries).
 
 LogIQ is communicating on the following URL:
 
@@ -14,7 +16,7 @@ LogIQ is communicating on the following URL:
 
 # What is logiq-core?
 
-Communicating with the LogIQ&trade; server is very simple, the full set of commands and their responses
+Communicating with the LogIQ server is very simple, the full set of requests and responses
 are documented in detail below.
 
 logiq-core consists of _optional_ code that can simplify the implementation of producers and consumers further
