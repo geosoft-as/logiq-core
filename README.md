@@ -17,11 +17,15 @@ LogIQ is available on the following URL:
 
 # What is logiq-core?
 
-Communicating with the LogIQ server is very simple, the full set of requests and responses
-are documented in detail below.
+The main reason for maintaining the `logic-core` repository is the present documentation.
 
-`logiq-core` consists of _optional_ code that can simplify the implementation of producers and consumers further
-for given programming environments.
+Communicating with the LogIQ server is very simple, the full set of requests and responses are documented in detail below.
+
+But to simplify the implementation of producers and consumers further, this repository contains code that can be used in
+specific programming environments.
+
+Note that the `logiq-core` library is being used both by the LogIQ server and the GeoSoft desktop consumer environment,
+ScenIQ&trade; as well as in PoC client applications like [TrackMe](https://geosoft.no/TrackMe).
 
 
 
