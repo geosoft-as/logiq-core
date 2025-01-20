@@ -10,6 +10,7 @@ format where the data themselves are included as
 
 LogIQ is available at the following URL:
 
+> [!NOTE]
 > wss://logiq.geosoft.no:8025
 
 
@@ -58,13 +59,17 @@ The generic form of a JSON-RPC request and response is as follows:
 ```
 
 
-### getCustomers
+## getCustomers
 
 | getCustomers   | parameters         |
 |----------------|--------------------|
 |                | adminUsername      |
 |                | adminPassword      |
-|Example request | ```json
+
+
+Example request:
+
+```json
 {
   "jsonrpc": "2.0",
   "method": "getCustomers",
@@ -72,8 +77,6 @@ The generic form of a JSON-RPC request and response is as follows:
   "id": 77
 }
 ```
-|
-
 
 Example response:
 
