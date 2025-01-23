@@ -24,8 +24,9 @@ Communicating with the LogIQ server is very simple, the full set of requests and
 But to simplify the implementation of producers and consumers further, the repository also contains code that can be used
 in specific programming environments.
 
-Note that the `logiq-core` library is being used both by the LogIQ&trade; and the corresponding GeoSoft desktop consumer
-environment, ScenIQ&trade; as well as in PoC client applications like [TrackMe](https://geosoft.no/TrackMe).
+Note that the `logiq-core` library is being used both by the LogIQ&trade; server and the corresponding
+GeoSoft desktop consumer environment, ScenIQ&trade; as well as in PoC client applications
+like [TrackMe](https://geosoft.no/TrackMe) and others.
 
 
 
