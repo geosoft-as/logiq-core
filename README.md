@@ -3,6 +3,8 @@
 GeoSoft LogIQ&trade; is a cloud-based time series data server.
 It accepts time series data from _producers_ and deliver the data to subscribing _consumers_ in real-time or in batch.
 
+![image](https://geosoft.no/images/logiq2.png)
+
 The communication with the server is done over a secure web socket connection sending simple strings in the
 [JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 format where the data themselves are passed in the GeoSoft
