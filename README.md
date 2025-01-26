@@ -21,10 +21,16 @@ LogIQ is available on the following URL:
 
 The main reason for maintaining the `logic-core` repository is the present documentation.
 
-Communicating with the LogIQ server is very simple, the full set of requests and responses are documented in detail below.
+Communicating with the LogIQ server is simple, the full set of requests and responses are documented in detail below.
 
 But to simplify the implementation of producers and consumers further, the repository also contains code that can be used
 in specific programming environments.
+
+More specifically logiq-core contains:
+
+* Code for creating JSON-RPC 2.0 requests and response objects from JSON strings
+* Utilities for working with JSON objects in general
+* A simple web socket client implementation
 
 Note that the `logiq-core` library is being used both by the LogIQ&trade; server and the corresponding
 GeoSoft desktop consumer environment, ScenIQ&trade; as well as in PoC client applications
